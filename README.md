@@ -1,3 +1,6 @@
+# Briefing
+This application has the objective to learn the principles of ReactJS, consuming API REST, learn about components, properties of componentes, manipulation of state and styled componentes. This README has the objective for future consults.
+
 # Setting Configuration for new React Application
 
 - To turn things easier, just run into your bash `yarn create react-app <application_name>`
@@ -84,3 +87,17 @@ Lib reponsible for consume API's rest
         |--- services
                 |--- api.js 
 ```
+# Building the Application
+
+### Routes
+
+As we saw in SPA (Single Page Application), React uses a library called _react-router-dom_. After following the steps [above](https://github.com/richardyamamoto/bootcamp-reactjs#spa---single-page-application), let's start configuring the routes:
+
+1.  On this example of application, we have two pages, Main and Repository. The first one going to be located at '/' and the second '/repository'.
+2.  Inside the file routes.js, import the `import React from 'react'`.
+3.  After this, import three modules from react-router-dom `import { BrowserRouter, Switcher, Route } from 'react-router-dom'`
+    - BrowserRouter: This one is responsible for the directory that we know in browser, using bars like api.github.com/repos/richardyamamoto/bootcamp-reactjs
+    - Switcher: The react-router-dom has the capacity for router more than one route a time, so switcher break it and just allow one route a time
+    - Route: Responsible for the path and the component thats going to be loaded
+        - Exemple: `<Route path='/' exact component={Main}/>` in this case we use `exact` because Route always stop searching as it find the first one that matchs.
+
