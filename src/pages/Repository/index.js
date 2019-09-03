@@ -5,7 +5,7 @@ import api from '../../services/api';
 
 import Container from '../../components/Container';
 
-import { Loading, Owner } from './styles';
+import { Loading, Owner, IssueList } from './styles';
 
 export default class Repository extends Component {
   static propTypes = {
@@ -36,10 +36,9 @@ export default class Repository extends Component {
         },
       }),
     ]);
-
     this.setState({
       repository: repository.data,
-      issues: issues.date,
+      issues: issues.data,
       loading: false,
     });
   }
@@ -54,10 +53,27 @@ export default class Repository extends Component {
       <Container>
         <Owner>
           <Link to="/">Voltar aos repositórios</Link>
-          <img src={repository.owner.avater_url} alt={repository.owner.login} />
+          <img src={repository.owner.avatar_url} alt={repository.owner.login} />
           <h1>{repository.name}</h1>
           <p>{repository.description}</p>
         </Owner>
+
+        <IssueList>
+          {issues.map(issue => (
+            <li key={String(issue.key)}>
+              <img src={issue.user.avatar_url} alt={issue.user.login} />
+              <div>
+                <strong>
+                  <a href={issue.html_url}>{issue.title}</a>
+                  {issue.labels.map(label => (
+                    <span key={String(label.id)}>{label.name}</span>
+                  ))}
+                </strong>
+                <p>{issue.user.login}</p>
+              </div>
+            </li>
+          ))}
+        </IssueList>
       </Container>
     );
   }
