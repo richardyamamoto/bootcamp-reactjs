@@ -11,6 +11,22 @@ export default class Main extends Component {
     loading: false,
   };
 
+  // Load the data on localStorage
+  componentDidMount() {
+    const repositories = localStorage.getItem('repositories');
+    if (repositories) {
+      this.setState({ repositories: JSON.parse(repositories) });
+    }
+  }
+
+  // Save the updates on localStorage
+  componentDidUpdate(_, prevState) {
+    const { repositories } = this.state;
+    if (prevState.repositories !== repositories) {
+      localStorage.setItem('repositories', JSON.stringify(repositories));
+    }
+  }
+
   // When input change
   handleInputChange = e => {
     // Change the state when input
@@ -65,7 +81,7 @@ export default class Main extends Component {
           {repositories.map(repository => (
             <li key={repository.name}>
               <span>{repository.name}</span>
-              <a href="#">Detalhes</a>
+              <a href="">Detalhes</a>
             </li>
           ))}
         </List>
