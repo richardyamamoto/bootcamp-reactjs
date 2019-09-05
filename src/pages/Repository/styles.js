@@ -43,8 +43,8 @@ export const Owner = styled.div`
 `;
 
 export const IssueList = styled.ul`
-  padding-top: 30px;
-  margin-top: 30px;
+  padding-top: 5px;
+  margin-top: 5px;
   border-top: 1px solid #eee;
   list-style: none;
 
@@ -98,5 +98,70 @@ export const IssueList = styled.ul`
       font-size: 12px;
       color: #999;
     }
+  }
+`;
+
+export const IssueFilter = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+
+  button {
+    min-width: 35px;
+    min-height: 20px;
+    padding: 5px 20px;
+    margin-right: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    color: #eee;
+    background-color: #7159c7;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background-color: #a9a9;
+    color: #333;
+  }
+`;
+
+export const PageActions = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  justify-content: center;
+
+  button {
+    min-width: 35px;
+    min-height: 20px;
+    padding: 5px 20px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    color: #eee;
+    background-color: #7159c7;
+    font-size: 14px;
+    font-weight: bold;
+
+    &[disabled]{
+      cursor: not-allowed;
+      opacity: 0.2;
+    }
+
+  button:hover {
+    background-color: #a9a9;
+    color: #333;
+  }
+
+  + span {
+    display: flex;
+    padding: 0 10px;
+    margin: 0 10px;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
   }
 `;

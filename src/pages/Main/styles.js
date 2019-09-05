@@ -1,8 +1,6 @@
 import styled, { keyframes, css } from 'styled-components';
 
-export const Form = styled.form.attrs(props => ({
-  error: props.error,
-}))`
+export const Form = styled.form`
   margin-top: 30px;
   display: flex;
   flex-direction: row;
@@ -10,13 +8,17 @@ export const Form = styled.form.attrs(props => ({
   input {
     flex: 1;
     border: 1px solid ${props => (props.error ? '#ff6b6b' : '#eee')};
-    padding: 10px 15px;
+    padding: 15px 20px;
     border-radius: 4px;
     font-size: 16px;
+    font-weight: 100;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
     transition: border 0.5s ease-out;
   }
 `;
+// Animation
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -34,17 +36,26 @@ export const SubmitButton = styled.button.attrs(props => ({
 }))`
   background: #7159c1;
   border: 0;
-  padding: 0 15px;
+  padding: 0 20px;
   margin-left: 10px;
   border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
 
+  svg {
+    margin: 0;
+  }
+
   &[disabled] {
     cursor: not-allowed;
     opacity: 0.6;
   }
+
+  &:hover {
+    background-color: #a9a9;
+  }
+
   ${props =>
     props.loading &&
     css`
@@ -59,19 +70,25 @@ export const List = styled.ul`
   margin-top: 30px;
 
   li {
-    padding: 15px 0;
+    padding: 15px 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-    & + li {
-      border-top: 1px solid #eee;
-    }
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 10px;
 
     a {
       color: #7159c1;
       text-decoration: none;
+
+      &:hover {
+        color: #444;
+      }
     }
   }
 `;
