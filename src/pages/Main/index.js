@@ -12,6 +12,7 @@ export default class Main extends Component {
     newRepo: '',
     repositories: [],
     loading: false,
+    error: null,
   };
 
   // Load the data on localStorage
@@ -37,26 +38,43 @@ export default class Main extends Component {
   };
 
   handleSubmit = async e => {
-    const { newRepo, repositories } = this.state;
-    this.setState({ loading: true });
     // Prevent the page do reload
     e.preventDefault();
+    this.setState({ loading: true, error: false });
 
-    const response = await api.get(`/repos/${newRepo}`);
+    try {
+      const { newRepo, repositories } = this.state;
+      // Request from API
 
-    const data = {
-      name: response.data.full_name,
-    };
+      if (newRepo === '') throw new Error('You must search something');
 
-    this.setState({
-      repositories: [...repositories, data],
-      newRepo: '',
-      loading: false,
-    });
+      const response = await api.get(`/repos/${newRepo}`);
+
+      if (!response) throw new Error('Repository does not exists');
+
+      const hasOne = repositories.find(rep => rep.name === newRepo);
+
+      if (hasOne) throw new Error('Repository already in the list');
+
+      const data = {
+        name: response.data.full_name,
+      };
+
+      this.setState({
+        repositories: [...repositories, data],
+        newRepo: '',
+        loading: false,
+      });
+    } catch (error) {
+      console.log(error);
+      this.setState({ error: true });
+    } finally {
+      this.setState({ loading: false });
+    }
   };
 
   render() {
-    const { newRepo, repositories, loading } = this.state;
+    const { newRepo, repositories, loading, error } = this.state;
     return (
       <Container>
         <h1>
@@ -64,7 +82,7 @@ export default class Main extends Component {
           Repositórios
         </h1>
 
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} error={error}>
           <input
             type="text"
             placeholder="Adicionar repositorio"

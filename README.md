@@ -77,10 +77,12 @@ First of all we have to install the extension on VSCode for him undestand the sy
         Import { createGlobalStyle } from 'styled-components'`
         export default createGlobalStyle`<here_goes_css>`;
       ```
-    Example: [global.js](https://gist.github.com/richardyamamoto/8cdc6312d28fcf718b66c93959aa6cc5), _Don't forget to import the global style into the src/App.js_
+    Example: [global.js](https://gist.github.com/richardyamamoto/8cdc6312d28fcf718b66c93959aa6cc5), _Don't forget to import the global style into the src/App.js and put the elemente imported inside the return_
 
 ### React Icons
 Icons are very common in application, to turn things easier, there is a library with the most famous packages of icons, we are going to use it. To install just run on bash: `yarn add react-icons`
+
+The icon is imported as a component, so don't forget to `import {<name_of_icon>} from 'react-icons/<icons_family>'`
 
 ### Axios
 The consuming of API's is a good way to practice the principles of ReactJS and learn how to manipulate and show data. To facilitate our lives there is a library for this porpose. It is called Axios.t
@@ -93,17 +95,29 @@ We use to consume an API as a service, so let's create a folder inside _src_ nam
             |--- api.js
 ```
 Example: [api.js](https://gist.github.com/richardyamamoto/e13c0cc1f0277e487f67625de67b7302), _on this example we are using the api from GitHub_
+
 # Building the Application
+After all this steps, let's start building our application.
 
 ### Routes
 
 As we saw in SPA (Single Page Application), React uses a library called _react-router-dom_. After following the steps [above](https://github.com/richardyamamoto/bootcamp-reactjs#spa---single-page-application), let's start configuring the routes:
 
-1.On this example of application, we have two pages, Main and Repository. The first one going to be located at '/' and the second '/repository'.
-2.Inside the file routes.js, import the `import React from 'react'`.
-3.After this, import three modules from react-router-dom `import { BrowserRouter, Switcher, Route } from 'react-router-dom'`
-  - BrowserRouter: This one is responsible for the directory that we know in browser, using bars like api.github.com/repos/richardyamamoto/bootcamp-reactjs
+1.  On this example of application, we have two pages, Main and Repository. The first one going to be located at '/' and the second '/repository'.
+2.  Inside the file routes.js, import the `import React from 'react'`.
+3.  After this, import three modules from react-router-dom `import { BrowserRouter, Switcher, Route } from 'react-router-dom'`
+  - BrowserRouter: This one is responsible for the directory that we know in browser, using bars like _api.github.com/repos/richardyamamoto/bootcamp-reactjs_
   - Switcher: The react-router-dom has the capacity for router more than one route a time, so switcher break it and just allow one route a time
   - Route: Responsible for the path and the component thats going to be loaded
      Exemple: `<Route path='/' exact component={Main}/>` in this case we use `exact` because Route always stop searching as it find the first one that matchs.
+4.  After created the routes (_remember that this steps are not linear_), go to your `src/App.js` than `import Routes from './routes'` and put the element `<Routes />` inside the return.
+
+### Page Main
+
+The page main is the first thing that the user going to see, so let's start with `import React,{ Component } from 'react'` and create a class Main extending form Component.
+
+ > _Use the Component modulo when the component is a class_
+
+Create the `render(){}` method and inside it the `return`
+
 
