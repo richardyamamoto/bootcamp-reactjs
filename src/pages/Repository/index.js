@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { FaSpinner } from 'react-icons/fa';
 import api from '../../services/api';
 
 import Container from '../../components/Container';
@@ -92,7 +94,12 @@ export default class Repository extends Component {
     } = this.state;
 
     if (loading) {
-      return <Loading>Carregando</Loading>;
+      return (
+        <Loading disabled={loading}>
+          <FaSpinner color="#fff" size={65} />
+          Carregando
+        </Loading>
+      );
     }
 
     return (

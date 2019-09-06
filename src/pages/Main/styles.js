@@ -5,6 +5,10 @@ export const Form = styled.form`
   display: flex;
   flex-direction: row;
 
+  svg {
+    margin: 0;
+  }
+
   input {
     flex: 1;
     border: 1px solid ${props => (props.error ? '#ff6b6b' : '#eee')};
@@ -36,25 +40,12 @@ export const SubmitButton = styled.button.attrs(props => ({
 }))`
   background: #7159c1;
   border: 0;
-  padding: 0 20px;
+  padding: 0 15px;
   margin-left: 10px;
   border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  svg {
-    margin: 0;
-  }
-
-  &[disabled] {
-    cursor: not-allowed;
-    opacity: 0.6;
-  }
-
-  &:hover {
-    background-color: #a9a9;
-  }
 
   ${props =>
     props.loading &&
@@ -63,6 +54,11 @@ export const SubmitButton = styled.button.attrs(props => ({
         animation: ${rotate} 2s linear infinite;
       }
     `}
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 `;
 
 export const List = styled.ul`
